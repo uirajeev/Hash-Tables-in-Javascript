@@ -22,4 +22,3 @@ HashTable.prototype.hash = function(key) {
 
 var HT = new HashTable(123);
 console.log(HT.hash("eh"));
-console.log(HT);

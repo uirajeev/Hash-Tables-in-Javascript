@@ -64,14 +64,43 @@ HashTable.prototype.getAll = function (){
   }
   return allNode;
 }
+
+// Delete data from hash table
+HashTable.prototype.delete = function(key) {
+  var index = this.hash(key);
+  var currentNode = this.bucket[index];
+  if (!currentNode) return false;
+  if (currentNode.key === key) {
+    this.bucket[index] = currentNode.next;
+    return true;
+  }
+  while(currentNode.next) {
+    if (currentNode.next.key === key) {
+      currentNode.next = currentNode.next.next;
+      return true;
+    }
+    currentNode = currentNode.next;
+  }
+}
+
+// Crate a hash Table
 var HT = new HashTable(20);
 
+// Insert data in hash Table
 HT.insert('Dane', "dany@gmail.com");
 HT.insert('Samey', "saney@gmail.com");
 HT.insert('Dena', "deny@gmail.com");
-HT.insert('Dena', "chinadiean@gmail.com");
+HT.insert('Dnea', "xxccc@gmail.com");
+HT.insert('Dnae', "chinadiean@gmail.com");
 
-HT.get("Dane");
+// Update Data in hash table
+HT.insert('Dnae', "newchinadiean@gmail.com");
 
+// Delete Data in hash table
+HT.delete("Dane");
+
+// Get all data hash table
 HT.getAll();
-// console.log(HT.bucket);
+
+// Console hash table
+console.log(HT.bucket);
